@@ -5,16 +5,25 @@ from datetime import datetime
 
 class BaseModel:
     """ Base model class of all subclasses """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialization of instance of BaseModel
             Args:
+                args: tuple argument
+                kwargs: dict argument
                 id:ssign with an uuid when an instance is created
                 create_at: assign with the current datetime when an instance is created
                 updated_at:  assign with the current datetime when an instance is created and it will be updated every time you change your object
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
+        if kwargs is not None and len(kwargs) != 0:
+            if '__class__' in kwargs:
+                del kwargs['__class__']
+            kwargs['created_at'] = datetime.fromisoformat(kwargs['created_at'])
+            kwargs['updated_at'] = datetime.fromisoformat(kwargs['updated_at'])
+            self.__dict__.update(kwargs)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.today()
+            self.updated_at = datetime.today()
 
     def __str__(self):
         """ returns a string format of BaseModel """
