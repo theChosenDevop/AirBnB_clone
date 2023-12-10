@@ -2,6 +2,7 @@
 """ Defines Base Model"""
 from uuid import uuid4
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -29,6 +30,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
+            models.storage.new(self)
 
     def __str__(self):
         """ returns a string format of BaseModel """
@@ -41,6 +43,7 @@ class BaseModel:
         """ Updates the public instance attribute
         updated_at with the current datetime """
         self.__dict__.update({'updated_at': datetime.today()})
+        models.storage.save()
 
     def to_dict(self):
         """ Returns a dictionary containing all keys/values of __dict__  """
