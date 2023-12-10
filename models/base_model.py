@@ -3,6 +3,7 @@
 from uuid import uuid4
 from datetime import datetime
 
+
 class BaseModel:
     """ Base model class of all subclasses """
     def __init__(self, *args, **kwargs):
@@ -11,8 +12,12 @@ class BaseModel:
                 args: tuple argument
                 kwargs: dict argument
                 id:ssign with an uuid when an instance is created
-                create_at: assign with the current datetime when an instance is created
-                updated_at:  assign with the current datetime when an instance is created and it will be updated every time you change your object
+                create_at: assign with the current datetime
+                            when an instance is created
+                updated_at: assign with the current datetime
+                            when an instance is created and it will
+                            be updated every time you
+                            change your object
         """
         if kwargs is not None and len(kwargs) != 0:
             if '__class__' in kwargs:
@@ -27,12 +32,15 @@ class BaseModel:
 
     def __str__(self):
         """ returns a string format of BaseModel """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+                                    self.__class__.__name__,
+                                    self.id, self.__dict__
+                                    )
 
     def save(self):
-        """ Updates the public instance attribute updated_at with the current datetime """
+        """ Updates the public instance attribute
+        updated_at with the current datetime """
         self.__dict__.update({'updated_at': datetime.today()})
-        #self.updated_at = datetime.today()
 
     def to_dict(self):
         """ Returns a dictionary containing all keys/values of __dict__  """
@@ -43,5 +51,4 @@ class BaseModel:
         dict_output['created_at'] = dict_output['created_at'].isoformat()
         """ Convert upated_at to ISO format """
         dict_output['updated_at'] = dict_output['updated_at'].isoformat()
- 
         return dict_output
