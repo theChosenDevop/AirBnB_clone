@@ -3,6 +3,7 @@
 import cmd
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
     """Command interpreter class"""
     prompt = "(hbnb )"
@@ -22,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """quit on EOF"""
+        print("")
         return True
 
     def emptyline(self):
@@ -38,15 +40,18 @@ class HBNBCommand(cmd.Cmd):
         print("EOF command to exit the program")
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id"""
+        """
+            Creates a new instance of BaseModel,
+            saves it (to the JSON file) and prints the id
+        """
     if not arg:
         print("** class name missing **")
-    elif arg not in self.classModel:
+    elif arg not in HBNBCommand.classes:
         print("** class doesn't exist **")
     else:
         new_instance = BaseModel()
         new_instance.save()
-        print(new_instance.id)
+
 
 if __name__ == "__main__":
-    HBNBCommand().cmdloop()
+    HBNBCommand.cmdloop()
