@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Defines HBnB console"""
+"""
+    File: Console.py
+    console.py that contains the entry point of the command interpreter
+"""
 import cmd
 from models.base_model import BaseModel
 
