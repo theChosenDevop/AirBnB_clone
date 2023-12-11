@@ -5,7 +5,11 @@ from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command interpreter class"""
+    """Defines the HolbertonBnB command interpreter.
+        
+        Attributes:
+            prompt (str): The command prompt.
+    """
     prompt = "(hbnb )"
     __classes = {
             "BaseModel",
