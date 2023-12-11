@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
     Defines unittest for models/base_model.py
-
     Unittest classes:
         TestBaseModel
         TestFileStorage
