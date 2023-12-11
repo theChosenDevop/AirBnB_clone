@@ -74,7 +74,10 @@ class TestBaseModel(unittest.TestCase):
         """ check if __class__ is added with the correct class name """
         self.assertIn('__class__', dict_repr)
         self.assertEqual(dict_repr['__class__'], 'BaseModel')
-        """ Check if created_at and updated_at are converted to string in ISO format """
+        """
+            Check if created_at and updated_at are
+            converted to string in ISO format
+        """
         self.assertIn('created_at', dict_repr)
         self.assertIn('updated_at', dict_repr)
         self.assertIsInstance(dict_repr['created_at'], str)
